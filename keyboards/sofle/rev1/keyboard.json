@@ -17,7 +17,9 @@
         "oled": true,
         "rgb_matrix": true,
         "extrakey": true,
-        "mousekey": true
+        "mousekey": true,
+        "wpm": true,
+        "os_detection": true
     },
     "development_board": "promicro",
     "rgb_matrix": {
