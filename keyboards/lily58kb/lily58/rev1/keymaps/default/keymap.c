@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB ,KC_Q   ,KC_W   ,KC_E   ,KC_R   ,KC_T   ,                     KC_Z   ,KC_U   ,KC_I   ,KC_O   ,KC_P   ,KC_MINS,
   KC_LSFT,KC_A   ,KC_S   ,KC_D   ,KC_F   ,KC_G   ,                     KC_H   ,KC_J   ,KC_K   ,KC_L   ,KC_SCLN,KC_QUOT,
   KC_LCTL,KC_Y   ,KC_X   ,KC_C   ,KC_V   ,KC_B   ,KC_DOWN,      KC_UP ,KC_N   ,KC_M   ,KC_COMM,KC_DOT ,KC_SLSH,KC_RSFT,
-                          KC_LALT,KC_LGUI,LOWER  ,KC_SPC ,      KC_ENT,RAISE  ,KC_BSPC,KC_RCTL
+                          KC_LALT,LGUI(KC_LSFT),LOWER  ,KC_SPC ,      KC_ENT,RAISE  ,KC_BSPC,KC_RCTL
 ),
 /* LOWER                                                                Music Controls
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RAISE] = LAYOUT(
   VIM_VIW         ,VIM_VIP         ,VIM_VICB        ,VIM_VISQB       ,VIM_VIT         ,VIM_VIC         ,                                   KC_1   ,KC_2   ,KC_3   ,KC_PSCR,KC_UP  ,KC_DEL  ,
   VIM_VAW         ,VIM_VAP         ,VIM_VACB        ,VIM_VASQB       ,VIM_VAT         ,VIM_VAC         ,                                   KC_4   ,KC_5   ,KC_6   ,KC_LEFT,_______,KC_RIGHT,
-  LGUI(LSFT(KC_1)),LGUI(LSFT(KC_2)),LGUI(LSFT(KC_3)),LGUI(LSFT(KC_4)),LGUI(LSFT(KC_5)),LGUI(LSFT(KC_6)),                                   KC_7   ,KC_8   ,KC_9   ,_______,KC_DOWN,XXXXXXX ,
+   LSFT(LGUI(KC_1)),LSFT(LGUI(KC_2)),LSFT(LGUI(KC_3)),LSFT(LGUI(KC_4)),LSFT(LGUI(KC_5)),LSFT(LGUI(KC_6)),                                   KC_7   ,KC_8   ,KC_9   ,_______,KC_DOWN,XXXXXXX ,
   XXXXXXX         ,XXXXXXX         ,_______         ,_______         ,_______         ,_______         ,KC_DOWN,                    KC_UP ,KC_PLUS,KC_P0  ,KC_PEQL,KC_LBRC,KC_RBRC,KC_BSLS ,
                                                                       _______         ,_______         ,_______,KC_SPC,             KC_ENT,_______,_______,_______
 ),
