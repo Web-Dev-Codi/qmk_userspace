@@ -1,0 +1,1 @@
+include keyboards/lily58kb/common/post_rules.mk

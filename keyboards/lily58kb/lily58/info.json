@@ -1,0 +1,17 @@
+{
+    "manufacturer": "Web-Dev-Codi",
+    "url": "https://github.com/Web-Dev-Codi/qmk_firmware",
+    "maintainer": "Web-Dev-Codi",
+    "keyboard_name": "Lily58",
+    "usb": {
+        "vid": "0x8D1D",
+        "device_version": "2.0.0"
+    },
+    "development_board": "elite_c",
+    "split": {
+        "enabled": true
+    },
+    "build": {
+        "lto": true
+    }
+}

@@ -15,6 +15,9 @@
         "vid": "0xFC32"
     },
     "diode_direction": "COL2ROW",
+    "qmk": {
+        "tap_keycode_delay": 10
+    },
     "split": {
         "enabled": true,
         "serial": {
