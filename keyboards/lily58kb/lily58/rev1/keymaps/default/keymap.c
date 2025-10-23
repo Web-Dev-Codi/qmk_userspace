@@ -28,31 +28,6 @@ enum layers {
     _ADJUST,
 };
 
-enum custom_keycodes {
-    VIM_VAW = SAFE_RANGE,// Select a word including surrounding white space
-    VIM_VIW, // Select inner word (works in visual mode)
-    VIM_VIP, //  Select inside parentheses
-    VIM_VAP, // Select all including parentheses
-    VIM_VICB, // Select inside curlies
-    VIM_VACB, // Select all including curlies
-    VIM_VISQB, // Select inside square brackets
-    VIM_VASQB, // Select all including square brackets
-    VIM_VIT, // Select inside HTML/XML tags
-    VIM_VAT, // Select all including HTML/XML tags
-    VIM_VIC, // Select inside a comment block
-    VIM_VAC, // Select all including a comment block
-    TMUX_TCR,// Reloads TMUX configuration
-    TMUX_TCRS,// Reloads TMUX configuration in terminal
-    TMUX_TL,// Lists all TMUX sessions
-    TMUX_TS,// Creates a new TMUX session
-    TMUX_TKSV,// Kills the current TMUX server
-    TMUX_TKSS,// Kills the current TMUX session
-    TMUX_TDEV,// Spawns development environment in a new TMUX session
-    TMUX_TD, // TMUX detach
-    TMUX_TA, // TMUX attach
-    TMUX_TAD,// TMUX attach and detach
-    // Add more as needed
-};
 
 #define RAISE MO(_RAISE)
 #define LOWER MO(_LOWER)
@@ -80,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB ,KC_Q   ,KC_W   ,KC_E   ,KC_R   ,KC_T   ,                     KC_Z   ,KC_U   ,KC_I   ,KC_O   ,KC_P   ,KC_MINS,
   KC_LSFT,KC_A   ,KC_S   ,KC_D   ,KC_F   ,KC_G   ,                     KC_H   ,KC_J   ,KC_K   ,KC_L   ,KC_SCLN,KC_QUOT,
   KC_LCTL,KC_Y   ,KC_X   ,KC_C   ,KC_V   ,KC_B   ,KC_DOWN,      KC_UP ,KC_N   ,KC_M   ,KC_COMM,KC_DOT ,KC_SLSH,KC_RSFT,
-                          KC_LALT,LGUI(KC_LSFT),LOWER  ,KC_SPC ,      KC_ENT,RAISE  ,KC_BSPC,KC_RCTL
+                          KC_LALT,LGUI(KC_LSFT),LOWER  ,KC_SPC ,      KC_ENT  ,RAISE  ,KC_RGUI,KC_RCTL
 ),
 /* LOWER                                                                Music Controls
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -98,11 +73,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_LOWER] = LAYOUT(
-  _______,KC_QUOTE,_______,_______,_______,KC_SLSH,                    KC_VOLU,KC_VOLD,KC_MPRV,KC_MNXT,KC_MSTP,KC_MPLY,
+  KC_LGUI,KC_RGUI,KC_LALT,KC_RALT,_______,KC_SLSH ,                    KC_VOLU,KC_VOLD,KC_MPRV,KC_MNXT,KC_MSTP,KC_MPLY,
   KC_F1  ,KC_F2   ,KC_F3  ,KC_F4  ,KC_F5  ,KC_F6  ,                    KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 ,KC_F12 ,
   KC_GRV ,KC_EXLM ,KC_AT  ,KC_HASH,KC_DLR ,KC_PERC,                    KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,KC_TILD,
   _______,_______ ,_______,_______,_______,_______,KC_LBRC,    KC_RBRC,KC_APP ,KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,KC_PIPE,
-                           _______,_______,_______,KC_SPC ,    KC_ENT ,_______,_______,_______
+                           _______,_______,_______,KC_SPC ,    KC_DOWN, KC_UP ,KC_LEFT,KC_RIGHT
 ),
 
 /* RAISE
@@ -120,15 +95,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
 
-// LGUI(KC_1) to LGUI(KC_8) are used for the workspace management in hyprland. Each workspace is assigned to a key, totalled 8 workspaces.
-// LGUI(KC_LSFT(KC_1)) to LGUI(KC_LSFT(KC_8)) are used for moving focused window to KC number that is specified.
 
 [_RAISE] = LAYOUT(
-  VIM_VIW         ,VIM_VIP         ,VIM_VICB        ,VIM_VISQB       ,VIM_VIT         ,VIM_VIC         ,                                   KC_1   ,KC_2   ,KC_3   ,KC_PSCR,KC_UP  ,KC_DEL  ,
-  VIM_VAW         ,VIM_VAP         ,VIM_VACB        ,VIM_VASQB       ,VIM_VAT         ,VIM_VAC         ,                                   KC_4   ,KC_5   ,KC_6   ,KC_LEFT,_______,KC_RIGHT,
-   LSFT(LGUI(KC_1)),LSFT(LGUI(KC_2)),LSFT(LGUI(KC_3)),LSFT(LGUI(KC_4)),LSFT(LGUI(KC_5)),LSFT(LGUI(KC_6)),                                   KC_7   ,KC_8   ,KC_9   ,_______,KC_DOWN,XXXXXXX ,
-  XXXXXXX         ,XXXXXXX         ,_______         ,_______         ,_______         ,_______         ,KC_DOWN,                    KC_UP ,KC_PLUS,KC_P0  ,KC_PEQL,KC_LBRC,KC_RBRC,KC_BSLS ,
-                                                                      _______         ,_______         ,_______,KC_SPC,             KC_ENT,_______,_______,_______
+  LGUI(KC_ESC)    ,LGUI(KC_SPC)    ,LAG(KC_SPC)     ,LGUI(KC_F)      ,LSG(KC_SPC)     ,LSG(KC_I)       ,                                   KC_1   ,KC_2   ,KC_3   ,_______,KC_UP  ,KC_BSPC ,
+  LCA(KC_DEL)     ,LSG(KC_Q)      ,LCG(KC_E)       ,LAG(KC_F)       ,LSG(KC_N)       ,LCSG(KC_SPC)    ,                                   KC_4   ,KC_5   ,KC_6   ,KC_LEFT,_______,KC_RIGHT,
+  LSFT(LGUI(KC_1)),LSFT(LGUI(KC_2)),LSFT(LGUI(KC_3)),LSFT(LGUI(KC_4)),LSFT(LGUI(KC_5)),LSFT(LGUI(KC_6)),                                   KC_7   ,KC_8   ,KC_9   ,_______,KC_DOWN,KC_DEL  ,
+  KC_PSCR         ,LSFT(KC_PSCR)    ,LALT(KC_PSCR)  ,LGUI(KC_PSCR)   ,_______         ,_______         ,KC_DOWN,                    KC_UP ,KC_PLUS,KC_P0  ,KC_PEQL,KC_LBRC,KC_RBRC,KC_BSLS ,
+                                                              _______         ,_______         ,_______,KC_SPC ,            KC_ENT,_______,_______,_______
 ),
 
 /* ADJUST
@@ -147,127 +120,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
   [_ADJUST] = LAYOUT(
-  TMUX_TCR ,TMUX_TCRS,TMUX_TL  ,TMUX_TS ,TMUX_TA,TMUX_TD,                    KC_COPY,KC_PSTE,KC_PSCR,KC_INS ,KC_HOME,KC_PGUP,
-  TMUX_TDEV,TMUX_TKSV,TMUX_TKSS,TMUX_TAD,XXXXXXX,XXXXXXX,                    KC_UNDO,KC_CUT ,KC_FIND,KC_DEL ,KC_END ,KC_PGDN,
-  XXXXXXX  ,XXXXXXX  ,XXXXXXX  ,XXXXXXX ,MS_DOWN,XXXXXXX,                    KC_AGIN,XXXXXXX,UG_TOGG,UG_HUEU,UG_SATU,UG_VALU,
+    _______,   _______,   _______,   _______,   _______,   _______,                  KC_COPY,KC_PSTE,KC_PSCR,KC_INS ,KC_HOME,KC_PGUP,
+    _______,   _______,   _______,   _______,   _______,   _______,                  KC_UNDO,KC_CUT ,KC_FIND,KC_DEL ,KC_END ,KC_PGDN,
+    _______,   _______,   _______,   _______,   _______,   _______,                  KC_AGIN,XXXXXXX,UG_TOGG,UG_HUEU,UG_SATU,UG_VALU,
   KC_PWR   ,KC_SLEP  ,XXXXXXX  ,XXXXXXX ,XXXXXXX,XXXXXXX,XXXXXXX,    XXXXXXX,XXXXXXX,UG_PREV,UG_NEXT,UG_HUED,UG_SATD,UG_VALD,
                           _______,_______,_______,_______,    _______,_______,_______,_______
   )
 };
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-    case VIM_VAW: // Select a word including surrounding white space
-        if (record->event.pressed) {
-            SEND_STRING("vaw");
-        }
-        break;
-    case VIM_VIW: // Select inner word (works in visual mode)
-        if (record->event.pressed) {
-            SEND_STRING("viw");
-        }
-        break;
-    case VIM_VIP: // Select inside parentheses
-        if (record->event.pressed) {
-            SEND_STRING("vi(");
-        }
-        break;
-    case VIM_VAP: // Select all including parentheses
-        if (record->event.pressed) {
-            SEND_STRING("va(");
-        }
-        break;
-    case VIM_VICB: // Select inside curlies
-        if (record->event.pressed) {
-            SEND_STRING("vi{");
-        }
-        break;
-    case VIM_VACB: // Select all including curlies
-        if (record->event.pressed) {
-            SEND_STRING("va{");
-        }
-        break;
-    case VIM_VISQB: // Select inside square brackets
-        if (record->event.pressed) {
-            SEND_STRING("vi[");
-        }
-        break;
-    case VIM_VASQB: // Select all including square brackets
-        if (record->event.pressed) {
-            SEND_STRING("va[");
-        }
-        break;
-    case VIM_VIT: // Select inside HTML/XML tags
-        if (record->event.pressed) {
-            SEND_STRING("vit");
-        }
-        break;
-    case VIM_VAT: // Select all including HTML/XML tags
-        if (record->event.pressed) {
-            SEND_STRING("vat");
-        }
-        break;
-    case VIM_VIC: // Select inside a comment block
-        if (record->event.pressed) {
-            SEND_STRING("vic");
-        }
-        break;
-    case VIM_VAC: // Select all including a comment block
-        if (record->event.pressed) {
-            SEND_STRING("vac");
-        }
-        break;
-    case TMUX_TCR: // Reloads TMUX configuration
-        if (record->event.pressed) {
-            SEND_STRING("tcr");
-        }
-        break;
-    case TMUX_TCRS: // Reloads TMUX configuration in terminal
-        if (record->event.pressed) {
-            SEND_STRING("tcrs");
-        }
-        break;
-    case TMUX_TL: // Lists all TMUX sessions
-        if (record->event.pressed) {
-            SEND_STRING("tl");
-        }
-        break;
-    case TMUX_TS: // Creates a new TMUX session
-        if (record->event.pressed) {
-            SEND_STRING("ts");
-        }
-        break;
-    case TMUX_TKSV: // Kills the current TMUX server
-        if (record->event.pressed) {
-            SEND_STRING("tksv");
-        }
-        break;
-    case TMUX_TKSS: // Kills the current TMUX session
-        if (record->event.pressed) {
-            SEND_STRING("tkss");
-        }
-        break;
-    case TMUX_TDEV: // Spawns development environment in a new TMUX session
-        if (record->event.pressed) {
-            SEND_STRING("tdev");
-        }
-        break;
-    case TMUX_TD: // TMUX detach
-        if (record->event.pressed) {
-            SEND_STRING("td");
-        }
-        break;
-    case TMUX_TA: // TMUX attach
-        if (record->event.pressed) {
-            SEND_STRING("ta");
-        }
-        break;
-    case TMUX_TAD: // TMUX attach and detach
-        if (record->event.pressed) {
-            SEND_STRING("tad");
-        }
-        break;
-    // Add more cases as needed
-    }
-    return true;
-}

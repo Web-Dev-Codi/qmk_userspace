@@ -7,10 +7,10 @@
 #define USB_POLLING_INTERVAL_MS 10
 
 
-// #define NO_USB_STARTUP_CHECK   // Disables USB suspend check after keyboard startup
-
-// // Split keyboard settings
-// #define SPLIT_USB_DETECT
+#define SPLIT_USB_DETECT
+#define RGB_MATRIX_SLEEP     // turn off effects when suspended
+#define SPLIT_TRANSPORT_MIRROR             // If LED_MATRIX_KEYPRESSES or LED_MATRIX_KEYRELEASES is enabled, you also will want to enable SPLIT_TRANSPORT_MIRROR
+#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 255  // limits maximum brightness of LEDs (max 255). Higher may cause the controller to crash.
 
 #define AUTO_SHIFT_TIMEOUT 400
 #define NO_AUTO_SHIFT_SPECIAL
